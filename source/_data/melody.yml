@@ -82,7 +82,7 @@ katex:
 
 # Toggle fireworks (IE >= 10)
 # ---------------
-fireworks: false
+fireworks: true
 
 # Analysis
 # ---------------
@@ -126,8 +126,7 @@ cdn:
 # ---------------
 avatar:
 
-top_img: true # false or url of img
-
+top_img: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564223304266&di=a98bf6469a1d772e50c505bffe2b80c2&imgtype=0&src=http%3A%2F%2Fi2.hoopchina.com.cn%2Fuser%2F713%2F3806713%2F13090552460.jpg
 post_meta:
   date_type: created # created or updated
   categories: true
@@ -227,7 +226,7 @@ disqus:
 
 # Footer Settings
 # ---------------
-since: 2013
+since: 2019
 
 # footer_custom_text:
 
