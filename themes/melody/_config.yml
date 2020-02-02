@@ -64,7 +64,12 @@ algolia_search:
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=local-search
 # ---------------
 local_search:
-  enable: false
+  enable: true
+
+search:
+  path: search.xml
+  field: post
+  content: true
 
 # MathJax
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=mathjax
@@ -124,7 +129,7 @@ cdn:
 
 # Post info settings
 # ---------------
-avatar:
+avatar: 
 
 top_img: true # false or url of img
 

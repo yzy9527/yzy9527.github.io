@@ -74,7 +74,10 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: melody
-
+search:
+  path: search.xml
+  field: post
+  content: true
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 # deploy: git@github.com:yzy9527/yzy9527.github.io.git
