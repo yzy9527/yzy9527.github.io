@@ -12,6 +12,7 @@
 <p>好了，继续找问题，后来发现 优酷、腾讯视频等都会被浏览器劫持，产生双层播放器问题，并且。。。提前2秒结束。好了，自家视频都有问题，这锅是腾讯了的，qqHD版本号6.9.1.1019。</p>
 <p><img src="%22%22" alt></p>
 <p>但浏览各网站视频接着发现有些视频并不会被QQ浏览器所劫持，于是想这是QQHD视频播放器的一个bug，要是不用该播放器会不会解决这个问题呢；浏览器应该是在视频加载完成后检查是否有video标签来判断的，在测了几个demo后发现在网页加载后页面就会出现被劫持的标志，也就是左侧那块区域。</p>
+<a id="more"></a>
 <p>那就在网页加载后创建video标签试试。</p>
 <pre><code>window.onload = function(){
     myFunction()
@@ -30,7 +31,6 @@
     myFunction()
   },500);
 }</code></pre><p>结果发现还真的好使。。。。</p>
-<a id="more"></a>
 ]]></content>
       <categories>
         <category>video</category>
@@ -48,7 +48,8 @@
     &lt;a href=&quot;#&quot;&gt;
         &lt;img src=&quot;test.jpg&quot; /&gt;
     &lt;/a&gt;
-    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
+    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><a id="more"></a>
+<h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
 
  &lt;ul&gt;
 &lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
@@ -91,7 +92,7 @@ li{display:inline-block;}
     background: red;
 }</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="左对齐" title="左对齐"></p>
 <p>使用inline-block流动布局的好处就是随着窗口的变化，里面的内容也会跟着自动变化</p>
-<a id="more"></a>]]></content>
+<!--more-->]]></content>
       <categories>
         <category>css</category>
       </categories>
@@ -128,6 +129,7 @@ li{display:inline-block;}
     background-color: currentColor;
     background-clip: border-box;
 }</code></pre><p>border-box是默认值，表示元素的背景从border区域（包括border）以内开始保留</p>
+<a id="more"></a>
 <p><img src="http://qiniu.xiaoxilao.com/b_20190202_1.png" alt="border-box" title="border-box"> </p>
 <p>background-clip:padding-box;<br>padding-box表示元素的背景从padding区域(包括padding)以内开始保留。</p>
 <p><img src="http://qiniu.xiaoxilao.com/b_20190202_2.png" alt="padding-box" title="padding-box">   </p>
@@ -155,7 +157,7 @@ li{display:inline-block;}
     background-color: currentColor;
     background-clip: content-box;
 }</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20190202_5.png" alt="按钮" title="按钮">  </p>
-<a id="more"></a>]]></content>
+]]></content>
       <categories>
         <category>css</category>
       </categories>
