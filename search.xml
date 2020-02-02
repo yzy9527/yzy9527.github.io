@@ -42,14 +42,15 @@
     <content><![CDATA[<p>在使用 float:left  列表布局时当有两行时，第一行中间高度比该行其他的div高,第二行会被第一行最高的块给挡住,如下图</p>
 <p><img src="http://qiniu.xiaoxilao.com/b_20200202_134612.png" alt="清除浮动前" title="清除浮动前"> </p>
 <p>此时，父级元素坍塌，清除浮动可用伪元素:after或父元素使用display:inline-block。 </p>
+<a id="more"></a>
+
 <p><img src="http://qiniu.xiaoxilao.com/b_20200202_134613.png" alt="清除浮动前" title="清除浮动后"></p>
 <p>流动布局<br>E6/IE7浏览器同时满足上面的inline标签化以及结束标签连续化，再加上先前现代浏览器下的首尾标签留空，IE6/IE7浏览器也就能够实现列表元素的两端对齐啦！<br>like this</p>
 <pre><code>&lt;span&gt;
     &lt;a href=&quot;#&quot;&gt;
         &lt;img src=&quot;test.jpg&quot; /&gt;
     &lt;/a&gt;
-    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><a id="more"></a>
-<h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
+    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
 
  &lt;ul&gt;
 &lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
