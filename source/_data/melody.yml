@@ -128,7 +128,7 @@ cdn:
 # ---------------
 avatar: http://qiniu.xiaoxilao.com/xjzm.jpg
 
-top_img: http://qiniu.xiaoxilao.com/hzw_3.jpg
+top_img: true
 post_meta:
   date_type: created # created or updated
   categories: true
@@ -230,9 +230,9 @@ disqus:
 # ---------------
 since: 2019
 
-# footer_custom_text:
+footer_custom_text: 浙ICP备19045402号-1
 
-ICP:
+ICP: 
   enable: false
   #text:
 
