@@ -230,7 +230,7 @@ disqus:
 # ---------------
 since: 2019
 
-footer_custom_text: 浙ICP备19045402号-1
+footer_custom_text: <a href="http://beian.miit.gov.cn/">浙ICP备19045402号-1</a>
 
 ICP: 
   enable: false
