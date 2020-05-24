@@ -128,7 +128,7 @@ cdn:
 # ---------------
 avatar: http://qiniu.xiaoxilao.com/xjzm.jpg
 
-top_img: true
+top_img: http://qiniu.xiaoxilao.com/53f19176a0de7.jpg
 post_meta:
   date_type: created # created or updated
   categories: true
