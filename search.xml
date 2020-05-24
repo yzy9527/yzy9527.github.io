@@ -1,8 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2020/05/24/JavaScript/Object.defineProperty/</url>
+    <title>ipad qq浏览器HD video标签劫持问题</title>
+    <url>/2019/10/27/video/qqHd/</url>
+    <content><![CDATA[<p>问题来源：在升级iOS为12后，项目测试兼容性时发现，有些MP4格式视频在ipad qqHD上会出现以下bug:</p>
+<ul>
+<li>视频全屏播放会提前2秒结束</li>
+</ul>
+<p>于是，搞个demo吧，拷了个播放没问题的视频和有问题的视频用纯video标签试了一下，结果：正常的视频还是正常，有问题的视频还是提前2秒结束；（看来videojs是无辜的，看样子是视频的锅了）</p>
+<p>好了，让压缩视频的人看看这两个视频是怎么压缩的，有啥子区别。结果。。。。。都是同一个妈生的。</p>
+<p>好了，继续找问题，后来发现 优酷、腾讯视频等都会被浏览器劫持，产生双层播放器问题，并且。。。提前2秒结束。好了，自家视频都有问题，这锅是腾讯了的，qqHD版本号6.9.1.1019。</p>
+<p>但浏览各网站视频接着发现有些视频并不会被QQ浏览器所劫持，于是想这是QQHD视频播放器的一个bug，要是不用该播放器会不会解决这个问题呢；浏览器应该是在视频加载完成后检查是否有video标签来判断的，在测了几个demo后发现在网页加载后页面就会出现被劫持的标志，也就是左侧那块区域。</p>
+<a id="more"></a>
+<p>那就在网页加载后创建video标签试试。</p>
+<pre><code>window.onload = function(){
+    myFunction()
+}
+ function myFunction() {
+    var x = document.createElement(&quot;VIDEO&quot;);
+    x.setAttribute(&quot;src&quot;,&quot;f.mp4&quot;);
+    x.setAttribute(&quot;width&quot;, &quot;520&quot;);
+    x.setAttribute(&quot;height&quot;, &quot;240&quot;);
+    x.setAttribute(&quot;controls&quot;, &quot;controls&quot;);
+    document.body.appendChild(x);
+    x.play()
+  }</code></pre><p>结果好像不好使。。<br>难道浏览器检查video标签比执行函数慢？<br>那就来个延迟吧。</p>
+<pre><code>window.onload = function(){
+  setTimeout(function(){
+    myFunction()
+  },500);
+}</code></pre><p>结果发现还真的好使。。。。</p>
+]]></content>
+      <categories>
+        <category>Video</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>display:inline-block流动布局</title>
+    <url>/2019/09/12/css/inline-block/</url>
+    <content><![CDATA[<p>在使用 float:left  列表布局时当有两行时，第一行中间高度比该行其他的div高,第二行会被第一行最高的块给挡住,如下图</p>
+<p><img src="http://qiniu.xiaoxilao.com/b_20200202_134612.png" alt="清除浮动前" title="清除浮动前"> </p>
+<p>此时，父级元素坍塌，清除浮动可用伪元素:after或父元素使用display:inline-block。 </p>
+<a id="more"></a>
+
+<p><img src="http://qiniu.xiaoxilao.com/b_20200202_134613.png" alt="清除浮动前" title="清除浮动后"></p>
+<p>流动布局<br>E6/IE7浏览器同时满足上面的inline标签化以及结束标签连续化，再加上先前现代浏览器下的首尾标签留空，IE6/IE7浏览器也就能够实现列表元素的两端对齐啦！<br>like this</p>
+<pre><code>&lt;span&gt;
+    &lt;a href=&quot;#&quot;&gt;
+        &lt;img src=&quot;test.jpg&quot; /&gt;
+    &lt;/a&gt;
+    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
+
+ &lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
+  属性规定&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
+  属性规定&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
+  属性规定&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
+  属性规定&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
+  属性规定&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
+  属性规定&lt;/span&gt;&lt;/li&gt;&lt;span class=&quot;justify_fix&quot;&gt;&lt;/span&gt;
+&lt;/ul&gt;
+
+ul{text-align:justify;}
+li{display:inline-block;}
+.justify_fix{
+        display:inline-block;
+        width:100%;
+        height:0; 
+        overflow:hidden;
+
+}</code></pre><p>对上述插入额外的标签可用伪元素代替,width: 100%;旨在充满整行，这里高度设为1方便查看效果</p>
+<pre><code>ul:after{
+  content: &quot;&quot;;
+  width: 100%;
+  height: 1px;
+  background: red;
+  display: inline-block;
+
+}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="两端对齐" title="两端对齐"></p>
+<h4 id="2-左对齐"><a href="#2-左对齐" class="headerlink" title="2.左对齐"></a>2.左对齐</h4><p>很多时候，我们希望列表的最后一行是左对齐排列的，而不是两端对齐，这时候怎么办呢？原理与上面的两端对齐一致。就是复制几个列表元素的外层标签，等宽，但高度为0，里面就是个&nbsp;(不可缺)，复制的个数一般就是每行元素的列表个数啦，这样肯定可以保证最后一行元素一定是左对齐排列的啦！,height:0px</p>
+<pre><code>&lt;span class=&quot;list left_fix&quot;&gt; &lt;/span&gt;
+.left_fix{ 
+    padding:0; 
+    overflow:hidden;
+    height: 1px;
+    background: red;
+}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="左对齐" title="左对齐"></p>
+<p>使用inline-block流动布局的好处就是随着窗口的变化，里面的内容也会跟着自动变化</p>
+<!--more-->]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《许三观卖血记》-- 余华</title>
+    <url>/2019/07/27/postName/</url>
+    <content><![CDATA[<p>1.事情都是被逼出来的，人只有被逼上绝路了，才会有办法，没上绝路以前，不是没想到办法，就是想到了也不知道该不该去做。</p>
+<p>2.爱不是我多有钱，有多么大的智慧和成就，而是我把一切给你。关键时刻，替你挡风遮雨。</p>
+<p>3.在时代和个人的种种不幸中，我却看到了生活的种种幸福。酸甜苦辣是食物的味道，喜怒哀乐是生活的味道。</p>
+<p>4.生活中的各种事情带来的味道总是相伴而至，有时这个味道重点，有时那个味道重点，这样才真实。质朴之人，秉持真性情之人，不是一定什么都看得开，不是一定什么都做得对，不是一定什么问题都能解决，但是生活在他们眼里，就像他们的性情一样真，他们的生活中有所守护，有所坚持，有所为，有所不为，他们的生活即使无奈，但总是有一种可以用来面对无奈的幽默，生活的种种不幸中总会弥漫人性的暖意。</p>
+<p>5.人活一辈子，谁会没病没灾。谁没个三长两短?遇到那些倒霉的事，有准备总被没准备好。聪明人做事都给自己留一条退路。</p>
+<p>6.就算是你不是我的儿子，就算再骂你，你饿了还是要给你买面吃。</p>
+<p>7.人的生命只有一次，但是在写作和回忆里，不仅可以无限次重复生命，还可以选择生存的方式。因此，阅读和回忆无异于重活一次，可以填补生命的遗憾。</p>
+<p>8.这就叫屌毛出得比眉毛晚，长得倒比眉毛长。</p>
+<a id="more"></a>]]></content>
+      <categories>
+        <category>文学笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>JavaScript之Object.defineProperty函数相关知识点</title>
+    <url>/2019/07/21/JavaScript/Object.defineProperty/</url>
     <content><![CDATA[<blockquote>
 <p>Object.defineProperty(obj, prop, desc)</p>
 </blockquote>
@@ -146,118 +259,8 @@ console.log(Person) //{ age: 12, name: &apos;胖虎&apos; }</code></pre><h3 id="
 <li>或则说 冻结对象是指那些不能添加新的属性，不能修改已有属性的值，不能删除已有属性，以及不能修改已有属性的可枚举性、可配置性、可写性的对象。也就是说，这个对象永远是不可变的；<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let Person = &#123;</span><br><span class="line">    age: 12,</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(Person, &apos;name&apos;, &#123;</span><br><span class="line">    value: &apos;胖虎&apos;,</span><br><span class="line">    writable: true,</span><br><span class="line">    configurable: true,</span><br><span class="line">    enumerable: true</span><br><span class="line">&#125;)</span><br><span class="line">Object.freeze(Person)</span><br><span class="line">Person.name = &apos;大雄&apos;</span><br><span class="line">delete Person.name</span><br><span class="line">console.log(Person) //&#123; age: 12, name: &apos;胖虎&apos; &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>ipad qq浏览器HD video标签劫持问题</title>
-    <url>/2019/10/27/video/qqHd/</url>
-    <content><![CDATA[<p>问题来源：在升级iOS为12后，项目测试兼容性时发现，有些MP4格式视频在ipad qqHD上会出现以下bug:</p>
-<ul>
-<li>视频全屏播放会提前2秒结束</li>
-</ul>
-<p>于是，搞个demo吧，拷了个播放没问题的视频和有问题的视频用纯video标签试了一下，结果：正常的视频还是正常，有问题的视频还是提前2秒结束；（看来videojs是无辜的，看样子是视频的锅了）</p>
-<p>好了，让压缩视频的人看看这两个视频是怎么压缩的，有啥子区别。结果。。。。。都是同一个妈生的。</p>
-<p>好了，继续找问题，后来发现 优酷、腾讯视频等都会被浏览器劫持，产生双层播放器问题，并且。。。提前2秒结束。好了，自家视频都有问题，这锅是腾讯了的，qqHD版本号6.9.1.1019。</p>
-<p>但浏览各网站视频接着发现有些视频并不会被QQ浏览器所劫持，于是想这是QQHD视频播放器的一个bug，要是不用该播放器会不会解决这个问题呢；浏览器应该是在视频加载完成后检查是否有video标签来判断的，在测了几个demo后发现在网页加载后页面就会出现被劫持的标志，也就是左侧那块区域。</p>
-<a id="more"></a>
-<p>那就在网页加载后创建video标签试试。</p>
-<pre><code>window.onload = function(){
-    myFunction()
-}
- function myFunction() {
-    var x = document.createElement(&quot;VIDEO&quot;);
-    x.setAttribute(&quot;src&quot;,&quot;f.mp4&quot;);
-    x.setAttribute(&quot;width&quot;, &quot;520&quot;);
-    x.setAttribute(&quot;height&quot;, &quot;240&quot;);
-    x.setAttribute(&quot;controls&quot;, &quot;controls&quot;);
-    document.body.appendChild(x);
-    x.play()
-  }</code></pre><p>结果好像不好使。。<br>难道浏览器检查video标签比执行函数慢？<br>那就来个延迟吧。</p>
-<pre><code>window.onload = function(){
-  setTimeout(function(){
-    myFunction()
-  },500);
-}</code></pre><p>结果发现还真的好使。。。。</p>
-]]></content>
       <categories>
-        <category>video</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>display:inline-block流动布局</title>
-    <url>/2019/09/12/css/inline-block/</url>
-    <content><![CDATA[<p>在使用 float:left  列表布局时当有两行时，第一行中间高度比该行其他的div高,第二行会被第一行最高的块给挡住,如下图</p>
-<p><img src="http://qiniu.xiaoxilao.com/b_20200202_134612.png" alt="清除浮动前" title="清除浮动前"> </p>
-<p>此时，父级元素坍塌，清除浮动可用伪元素:after或父元素使用display:inline-block。 </p>
-<a id="more"></a>
-
-<p><img src="http://qiniu.xiaoxilao.com/b_20200202_134613.png" alt="清除浮动前" title="清除浮动后"></p>
-<p>流动布局<br>E6/IE7浏览器同时满足上面的inline标签化以及结束标签连续化，再加上先前现代浏览器下的首尾标签留空，IE6/IE7浏览器也就能够实现列表元素的两端对齐啦！<br>like this</p>
-<pre><code>&lt;span&gt;
-    &lt;a href=&quot;#&quot;&gt;
-        &lt;img src=&quot;test.jpg&quot; /&gt;
-    &lt;/a&gt;
-    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
-
- &lt;ul&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;&lt;span class=&quot;justify_fix&quot;&gt;&lt;/span&gt;
-&lt;/ul&gt;
-
-ul{text-align:justify;}
-li{display:inline-block;}
-.justify_fix{
-        display:inline-block;
-        width:100%;
-        height:0; 
-        overflow:hidden;
-
-}</code></pre><p>对上述插入额外的标签可用伪元素代替,width: 100%;旨在充满整行，这里高度设为1方便查看效果</p>
-<pre><code>ul:after{
-  content: &quot;&quot;;
-  width: 100%;
-  height: 1px;
-  background: red;
-  display: inline-block;
-
-}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="两端对齐" title="两端对齐"></p>
-<h4 id="2-左对齐"><a href="#2-左对齐" class="headerlink" title="2.左对齐"></a>2.左对齐</h4><p>很多时候，我们希望列表的最后一行是左对齐排列的，而不是两端对齐，这时候怎么办呢？原理与上面的两端对齐一致。就是复制几个列表元素的外层标签，等宽，但高度为0，里面就是个&nbsp;(不可缺)，复制的个数一般就是每行元素的列表个数啦，这样肯定可以保证最后一行元素一定是左对齐排列的啦！,height:0px</p>
-<pre><code>&lt;span class=&quot;list left_fix&quot;&gt; &lt;/span&gt;
-.left_fix{ 
-    padding:0; 
-    overflow:hidden;
-    height: 1px;
-    background: red;
-}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="左对齐" title="左对齐"></p>
-<p>使用inline-block流动布局的好处就是随着窗口的变化，里面的内容也会跟着自动变化</p>
-<!--more-->]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>《许三观卖血记》-- 余华</title>
-    <url>/2019/07/27/postName/</url>
-    <content><![CDATA[<p>1.事情都是被逼出来的，人只有被逼上绝路了，才会有办法，没上绝路以前，不是没想到办法，就是想到了也不知道该不该去做。</p>
-<p>2.爱不是我多有钱，有多么大的智慧和成就，而是我把一切给你。关键时刻，替你挡风遮雨。</p>
-<p>3.在时代和个人的种种不幸中，我却看到了生活的种种幸福。酸甜苦辣是食物的味道，喜怒哀乐是生活的味道。</p>
-<p>4.生活中的各种事情带来的味道总是相伴而至，有时这个味道重点，有时那个味道重点，这样才真实。质朴之人，秉持真性情之人，不是一定什么都看得开，不是一定什么都做得对，不是一定什么问题都能解决，但是生活在他们眼里，就像他们的性情一样真，他们的生活中有所守护，有所坚持，有所为，有所不为，他们的生活即使无奈，但总是有一种可以用来面对无奈的幽默，生活的种种不幸中总会弥漫人性的暖意。</p>
-<p>5.人活一辈子，谁会没病没灾。谁没个三长两短?遇到那些倒霉的事，有准备总被没准备好。聪明人做事都给自己留一条退路。</p>
-<p>6.就算是你不是我的儿子，就算再骂你，你饿了还是要给你买面吃。</p>
-<p>7.人的生命只有一次，但是在写作和回忆里，不仅可以无限次重复生命，还可以选择生存的方式。因此，阅读和回忆无异于重活一次，可以填补生命的遗憾。</p>
-<p>8.这就叫屌毛出得比眉毛晚，长得倒比眉毛长。</p>
-<a id="more"></a>]]></content>
-      <categories>
-        <category>文学笔记</category>
+        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
@@ -306,7 +309,7 @@ li{display:inline-block;}
 }</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20190202_5.png" alt="按钮" title="按钮">  </p>
 ]]></content>
       <categories>
-        <category>css</category>
+        <category>CSS</category>
       </categories>
   </entry>
   <entry>
