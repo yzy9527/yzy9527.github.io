@@ -94,7 +94,9 @@
 <li><code>存取描述符</code>是由 getter 函数和 setter 函数所描述的属性。</li>
 </ul>
 <blockquote>
-<p><em>一个描述符只能是这两者其中之一；不能同时是两者</em><br> <a id="more"></a></p>
+<p><em>一个描述符只能是这两者其中之一；不能同时是两者</em></p>
+</blockquote>
+ <a id="more"></a>
 <ol>
 <li><code>数据描述符</code>具有以下可选键值:  </li>
 </ol>
@@ -109,7 +111,6 @@
 <li><strong><code>get</code></strong>：属性的 getter 函数，如果没有 getter，则为 undefined。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 this 对象（由于继承关系，这里的this并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。<br><strong>默认为</strong> <code>undefined</code>。</li>
 <li><strong><code>set</code></strong>：属性的 setter 函数，如果没有 setter，则为 undefined。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 this 对象。<br><strong>默认为</strong> <code>undefined</code>。</li>
 </ul>
-</blockquote>
 <p><code>共享键值</code>（默认值是指在使用 Object.defineProperty() 定义属性时的默认值）：</p>
 <ul>
 <li><strong><code>configurable</code></strong>：当且仅当该属性的 configurable 键值为 true 时，该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。<br><strong>默认为</strong> <code>false</code>。</li>
