@@ -1,7 +1,11 @@
+---
 title: display:inline-block流动布局
 date: 2019-9-12 9:26:33
-categories: CSS
+categories:
+ - web前端
+ - css
 ---
+
 在使用 float:left  列表布局时当有两行时，第一行中间高度比该行其他的div高,第二行会被第一行最高的块给挡住,如下图
 
 ![清除浮动前](http://qiniu.xiaoxilao.com/b_20200202_134612.png "清除浮动前") 

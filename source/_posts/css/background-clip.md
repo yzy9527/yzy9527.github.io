@@ -1,6 +1,9 @@
+---
 title: 关于background-clip属性
 date: 2019-6-12 9:26:33
-categories: CSS
+categories: 
+ - web前端
+ - css
 ---
 
 background-clip属性的作用就是指定元素背景所在的区域

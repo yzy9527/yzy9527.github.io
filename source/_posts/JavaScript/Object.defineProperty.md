@@ -1,7 +1,9 @@
 ---
 title: JavaScript之Object.defineProperty函数相关知识点
 date: 2019-7-21 12:20:24
-categories: JavaScript
+categories:
+ - web前端
+ - JavaScript
 ---
 
  > Object.defineProperty(obj, prop, desc)
