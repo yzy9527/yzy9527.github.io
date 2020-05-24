@@ -13,23 +13,12 @@
 <p>但浏览各网站视频接着发现有些视频并不会被QQ浏览器所劫持，于是想这是QQHD视频播放器的一个bug，要是不用该播放器会不会解决这个问题呢；浏览器应该是在视频加载完成后检查是否有video标签来判断的，在测了几个demo后发现在网页加载后页面就会出现被劫持的标志，也就是左侧那块区域。</p>
 <a id="more"></a>
 <p>那就在网页加载后创建video标签试试。</p>
-<pre><code>window.onload = function(){
-    myFunction()
-}
- function myFunction() {
-    var x = document.createElement(&quot;VIDEO&quot;);
-    x.setAttribute(&quot;src&quot;,&quot;f.mp4&quot;);
-    x.setAttribute(&quot;width&quot;, &quot;520&quot;);
-    x.setAttribute(&quot;height&quot;, &quot;240&quot;);
-    x.setAttribute(&quot;controls&quot;, &quot;controls&quot;);
-    document.body.appendChild(x);
-    x.play()
-  }</code></pre><p>结果好像不好使。。<br>难道浏览器检查video标签比执行函数慢？<br>那就来个延迟吧。</p>
-<pre><code>window.onload = function(){
-  setTimeout(function(){
-    myFunction()
-  },500);
-}</code></pre><p>结果发现还真的好使。。。。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	myFunction()</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> x = <span class="built_in">document</span>.createElement(<span class="string">"VIDEO"</span>);</span><br><span class="line">       x.setAttribute(<span class="string">"src"</span>,<span class="string">"f.mp4"</span>);</span><br><span class="line">       x.setAttribute(<span class="string">"width"</span>, <span class="string">"520"</span>);</span><br><span class="line">       x.setAttribute(<span class="string">"height"</span>, <span class="string">"240"</span>);</span><br><span class="line">       x.setAttribute(<span class="string">"controls"</span>, <span class="string">"controls"</span>);</span><br><span class="line">       <span class="built_in">document</span>.body.appendChild(x);</span><br><span class="line">       x.play()</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果好像不好使。。<br>难道浏览器检查video标签比执行函数慢？<br>那就来个延迟吧。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    myFunction()</span><br><span class="line">  &#125;,<span class="number">500</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果发现还真的好使。。。。</p>
 ]]></content>
       <categories>
         <category>Video</category>
@@ -45,54 +34,22 @@
 
 <p><img src="http://qiniu.xiaoxilao.com/b_20200202_134613.png" alt="清除浮动前" title="清除浮动后"></p>
 <p>流动布局<br>E6/IE7浏览器同时满足上面的inline标签化以及结束标签连续化，再加上先前现代浏览器下的首尾标签留空，IE6/IE7浏览器也就能够实现列表元素的两端对齐啦！<br>like this</p>
-<pre><code>&lt;span&gt;
-    &lt;a href=&quot;#&quot;&gt;
-        &lt;img src=&quot;test.jpg&quot; /&gt;
-    &lt;/a&gt;
-    &lt;span&gt;描述&lt;/span&gt;&lt;/span&gt;</code></pre><h4 id="1-两端对齐"><a href="#1-两端对齐" class="headerlink" title="1.两端对齐"></a>1.两端对齐</h4><pre><code>列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"test.jpg"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span>&gt;</span>描述<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">```		</span><br><span class="line"></span><br><span class="line">#### 1.两端对齐  </span><br><span class="line">    列表（或文字）要两端对齐的前提就是内容必须超过一行，所以，要解决最后一行元素无法两端对齐的文字其实很简单，就是在列表（或文字段）的最后创建一个高度为0的宽度100%的透明的inline-block的标签层就可以了</span><br><span class="line">```html</span><br><span class="line">	 <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./x.jpg"</span> <span class="attr">width</span>=<span class="string">"120px"</span>/&gt;</span></span><br><span class="line">      属性规定<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./x.jpg"</span> <span class="attr">width</span>=<span class="string">"120px"</span>/&gt;</span></span><br><span class="line">      属性规定<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./x.jpg"</span> <span class="attr">width</span>=<span class="string">"120px"</span>/&gt;</span></span><br><span class="line">      属性规定<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./x.jpg"</span> <span class="attr">width</span>=<span class="string">"120px"</span>/&gt;</span></span><br><span class="line">      属性规定<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./x.jpg"</span> <span class="attr">width</span>=<span class="string">"120px"</span>/&gt;</span></span><br><span class="line">      属性规定<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./x.jpg"</span> <span class="attr">width</span>=<span class="string">"120px"</span>/&gt;</span></span><br><span class="line">      属性规定<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"justify_fix"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
- &lt;ul&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&quot;list&quot;&gt;&lt;img src=&quot;./x.jpg&quot; width=&quot;120px&quot;/&gt;
-  属性规定&lt;/span&gt;&lt;/li&gt;&lt;span class=&quot;justify_fix&quot;&gt;&lt;/span&gt;
-&lt;/ul&gt;
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">   <span class="selector-tag">ul</span>&#123;<span class="attribute">text-align</span>:justify;&#125;</span><br><span class="line"><span class="selector-tag">li</span>&#123;<span class="attribute">display</span>:inline-block;&#125;</span><br><span class="line"><span class="selector-class">.justify_fix</span>&#123;</span><br><span class="line">	    <span class="attribute">display</span>:inline-block;</span><br><span class="line">	    <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">	    <span class="attribute">height</span>:<span class="number">0</span>; </span><br><span class="line">	    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">	    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-ul{text-align:justify;}
-li{display:inline-block;}
-.justify_fix{
-        display:inline-block;
-        width:100%;
-        height:0; 
-        overflow:hidden;
+<p>对上述插入额外的标签可用伪元素代替,width: 100%;旨在充满整行，这里高度设为1方便查看效果</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">	<span class="selector-tag">ul</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">	  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">	  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">	  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">	  <span class="attribute">background</span>: red;</span><br><span class="line">	  <span class="attribute">display</span>: inline-block;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">```	</span><br><span class="line">![两端对齐](http://qiniu.xiaoxilao.com/b_20200202_134614.png "两端对齐")</span><br><span class="line"></span><br><span class="line">#### 2.左对齐  </span><br><span class="line">很多时候，我们希望列表的最后一行是左对齐排列的，而不是两端对齐，这时候怎么办呢？原理与上面的两端对齐一致。就是复制几个列表元素的外层标签，等宽，但高度为0，里面就是个&amp;<span class="selector-tag">nbsp</span>;(不可缺)，复制的个数一般就是每行元素的列表个数啦，这样肯定可以保证最后一行元素一定是左对齐排列的啦！,<span class="selector-tag">height</span><span class="selector-pseudo">:0px</span></span><br><span class="line">```<span class="selector-tag">html</span></span><br><span class="line">	&lt;span class="list left_fix"&gt; &lt;/span&gt;</span><br></pre></td></tr></table></figure>
 
-}</code></pre><p>对上述插入额外的标签可用伪元素代替,width: 100%;旨在充满整行，这里高度设为1方便查看效果</p>
-<pre><code>ul:after{
-  content: &quot;&quot;;
-  width: 100%;
-  height: 1px;
-  background: red;
-  display: inline-block;
-
-}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="两端对齐" title="两端对齐"></p>
-<h4 id="2-左对齐"><a href="#2-左对齐" class="headerlink" title="2.左对齐"></a>2.左对齐</h4><p>很多时候，我们希望列表的最后一行是左对齐排列的，而不是两端对齐，这时候怎么办呢？原理与上面的两端对齐一致。就是复制几个列表元素的外层标签，等宽，但高度为0，里面就是个&nbsp;(不可缺)，复制的个数一般就是每行元素的列表个数啦，这样肯定可以保证最后一行元素一定是左对齐排列的啦！,height:0px</p>
-<pre><code>&lt;span class=&quot;list left_fix&quot;&gt; &lt;/span&gt;
-.left_fix{ 
-    padding:0; 
-    overflow:hidden;
-    height: 1px;
-    background: red;
-}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="左对齐" title="左对齐"></p>
+<pre><code class="css"><span class="selector-class">.left_fix</span>{ 
+    <span class="attribute">padding</span>:<span class="number">0</span>; 
+    <span class="attribute">overflow</span>:hidden;
+    <span class="attribute">height</span>: <span class="number">1px</span>;
+    <span class="attribute">background</span>: red;
+}</code></pre>
+<p><img src="http://qiniu.xiaoxilao.com/b_20200202_134614.png" alt="左对齐" title="左对齐"></p>
 <p>使用inline-block流动布局的好处就是随着窗口的变化，里面的内容也会跟着自动变化</p>
-<!--more-->]]></content>
+]]></content>
       <categories>
         <category>CSS</category>
       </categories>
@@ -130,8 +87,7 @@ li{display:inline-block;}
 <li><code>存取描述符</code>是由 getter 函数和 setter 函数所描述的属性。</li>
 </ul>
 <blockquote>
-<p><em>一个描述符只能是这两者其中之一；不能同时是两者</em></p>
-</blockquote>
+<p><em>一个描述符只能是这两者其中之一；不能同时是两者</em><br> <a id="more"></a></p>
 <ol>
 <li><code>数据描述符</code>具有以下可选键值:  </li>
 </ol>
@@ -146,13 +102,24 @@ li{display:inline-block;}
 <li><strong><code>get</code></strong>：属性的 getter 函数，如果没有 getter，则为 undefined。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 this 对象（由于继承关系，这里的this并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。<br><strong>默认为</strong> <code>undefined</code>。</li>
 <li><strong><code>set</code></strong>：属性的 setter 函数，如果没有 setter，则为 undefined。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 this 对象。<br><strong>默认为</strong> <code>undefined</code>。</li>
 </ul>
+</blockquote>
 <p><code>共享键值</code>（默认值是指在使用 Object.defineProperty() 定义属性时的默认值）：</p>
 <ul>
 <li><strong><code>configurable</code></strong>：当且仅当该属性的 configurable 键值为 true 时，该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。<br><strong>默认为</strong> <code>false</code>。</li>
 <li><strong><code>enumerable</code></strong>：当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。<br><strong>默认为</strong> <code>false</code>。</li>
 </ul>
-<p><img src="http://qiniu.xiaoxilao.com/b_defineProperty.png" alt></p>
-<p>所以，只能有两种形式</p>
+<br>
+**描述符默认值汇总**
+|  属性名   | 默认值  |
+|  :-: |:-: |
+| value  | undefined |
+| writable  | false |
+| get  | undefined |
+| set  | undefined |
+| configurable  | false |
+| enumerable  | false |
+
+<p>所以，属性描述符只能有两种形式：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="built_in">Object</span>.defineProperty(Person, <span class="string">'name'</span>, &#123;</span><br><span class="line">    value: <span class="string">'胖虎'</span>,</span><br><span class="line">    writable: <span class="literal">false</span>, <span class="comment">// 是否可以改变</span></span><br><span class="line">    configurable: <span class="literal">false</span>,<span class="comment">//是否可配置</span></span><br><span class="line">    enumerable: <span class="literal">true</span> <span class="comment">//是否出现在对象的枚举属性中</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
@@ -197,16 +164,11 @@ li{display:inline-block;}
     <content><![CDATA[<p>background-clip属性的作用就是指定元素背景所在的区域</p>
 <p>语法：</p>
 <p>background-clip: border-box|padding-box|content-box;</p>
-<pre><code>&lt;div class=&quot;box&quot;&gt;
-.box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: 10px solid red;
-    background-color: currentColor;
-    background-clip: border-box;
-}</code></pre><p>border-box是默认值，表示元素的背景从border区域（包括border）以内开始保留</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">10px</span> solid red;</span><br><span class="line">	<span class="attribute">background-color</span>: currentColor;</span><br><span class="line">	<span class="attribute">background-clip</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>border-box是默认值，表示元素的背景从border区域（包括border）以内开始保留</p>
 <a id="more"></a>
 <p><img src="http://qiniu.xiaoxilao.com/b_20190202_1.png" alt="border-box" title="border-box"> </p>
 <p>background-clip:padding-box;<br>padding-box表示元素的背景从padding区域(包括padding)以内开始保留。</p>
@@ -214,27 +176,14 @@ li{display:inline-block;}
 <p>background-clip:content-box;<br>content-box表示元素的背景从内容区域以内开始保留。  </p>
 <p><img src="http://qiniu.xiaoxilao.com/b_20190202_3.png" alt="content-box" title="content-box"> </p>
 <p>实例：创建一些图标按钮  </p>
-<pre><code>&lt;div class=&quot;box&quot;&gt; 
-.box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: 10px solid;
-    border-radius: 50%;
-    background-color: currentColor;
-    background-clip: content-box;
-}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20190202_4.png" alt="按钮" title="按钮">  </p>
-<pre><code>.box {
-    display: inline-block;
-    width: 140px;
-    height: 10px;
-    padding: 35px 0;
-    border-top:10px solid;
-    border-bottom:10px solid;
-    background-color: currentColor;
-    background-clip: content-box;
-}</code></pre><p><img src="http://qiniu.xiaoxilao.com/b_20190202_5.png" alt="按钮" title="按钮">  </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">   <span class="selector-class">.box</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">10px</span> solid;</span><br><span class="line">	<span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">	<span class="attribute">background-color</span>: currentColor;</span><br><span class="line">	<span class="attribute">background-clip</span>: content-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://qiniu.xiaoxilao.com/b_20190202_4.png" alt="按钮" title="按钮">  </p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">140px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">35px</span> <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">border-top</span>:<span class="number">10px</span> solid;</span><br><span class="line">	<span class="attribute">border-bottom</span>:<span class="number">10px</span> solid;</span><br><span class="line">	<span class="attribute">background-color</span>: currentColor;</span><br><span class="line">	<span class="attribute">background-clip</span>: content-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://qiniu.xiaoxilao.com/b_20190202_5.png" alt="按钮" title="按钮">  </p>
 ]]></content>
       <categories>
         <category>CSS</category>
@@ -242,7 +191,7 @@ li{display:inline-block;}
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2019/03/27/hello-world/</url>
+    <url>/2019/02/27/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 

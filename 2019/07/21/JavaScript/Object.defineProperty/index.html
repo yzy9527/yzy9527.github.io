@@ -21,8 +21,7 @@
 <li><code>存取描述符</code>是由 getter 函数和 setter 函数所描述的属性。</li>
 </ul>
 <blockquote>
-<p><em>一个描述符只能是这两者其中之一；不能同时是两者</em></p>
-</blockquote>
+<p><em>一个描述符只能是这两者其中之一；不能同时是两者</em><br> <a id="more"></a></p>
 <ol>
 <li><code>数据描述符</code>具有以下可选键值:  </li>
 </ol>
@@ -37,13 +36,24 @@
 <li><strong><code>get</code></strong>：属性的 getter 函数，如果没有 getter，则为 undefined。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 this 对象（由于继承关系，这里的this并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。<br><strong>默认为</strong> <code>undefined</code>。</li>
 <li><strong><code>set</code></strong>：属性的 setter 函数，如果没有 setter，则为 undefined。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 this 对象。<br><strong>默认为</strong> <code>undefined</code>。</li>
 </ul>
+</blockquote>
 <p><code>共享键值</code>（默认值是指在使用 Object.defineProperty() 定义属性时的默认值）：</p>
 <ul>
 <li><strong><code>configurable</code></strong>：当且仅当该属性的 configurable 键值为 true 时，该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。<br><strong>默认为</strong> <code>false</code>。</li>
 <li><strong><code>enumerable</code></strong>：当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。<br><strong>默认为</strong> <code>false</code>。</li>
 </ul>
-<p><img src="http://qiniu.xiaoxilao.com/b_defineProperty.png" alt></p>
-<p>所以，只能有两种形式</p>
+<br>
+**描述符默认值汇总**
+|  属性名   | 默认值  |
+|  :-: |:-: |
+| value  | undefined |
+| writable  | false |
+| get  | undefined |
+| set  | undefined |
+| configurable  | false |
+| enumerable  | false |
+
+<p>所以，属性描述符只能有两种形式：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">Object</span>.defineProperty(Person, <span class="string">'name'</span>, &#123;</span><br><span class="line">    value: <span class="string">'胖虎'</span>,</span><br><span class="line">    writable: <span class="literal">false</span>, <span class="comment">// 是否可以改变</span></span><br><span class="line">    configurable: <span class="literal">false</span>,<span class="comment">//是否可配置</span></span><br><span class="line">    enumerable: <span class="literal">true</span> <span class="comment">//是否出现在对象的枚举属性中</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
