@@ -232,7 +232,7 @@ gitalk:
 # ---------------
 since: 2019
 
-footer_custom_text: <a href="http://beian.miit.gov.cn/">浙ICP备19045402号-1</a>
+# footer_custom_text: <a href="http://beian.miit.gov.cn/">浙ICP备19045402号-1</a>
 
 ICP: 
   enable: false
