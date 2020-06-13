@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ipad qq浏览器HD video标签劫持问题</title>
+    <title>js-canvas实现图片压缩</title>
     <url>/2020/06/02/JavaScript/image-compress/</url>
     <content><![CDATA[<p>前端项目中经常会碰到一些展示图片的地方，比如轮播图、头像上传等;对于这些场景，比如轮播图需要的图片为1000<em>500，但用户可能会上传尺寸为2000</em>1000大小的图片，这不仅会影响文件上传的速度又浪费了服务器资源；</p>
 <p>本文就对<code>js图片压缩</code>做一些总结</p>
