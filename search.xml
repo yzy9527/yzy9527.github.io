@@ -101,12 +101,12 @@
 <h3 id="3-refere"><a href="#3-refere" class="headerlink" title="3.refere"></a>3.refere</h3><p>验证refer,判断请求来源，禁止来自第三方的请求</p>
 ]]></content>
       <categories>
-        <category>web安全</category>
+        <category>Web安全</category>
         <category>CSRF攻击</category>
       </categories>
   </entry>
   <entry>
-    <title>xss攻击</title>
+    <title>XSS攻击</title>
     <url>/2020/11/13/web%E5%AE%89%E5%85%A8/xss/</url>
     <content><![CDATA[<p>安全问题：</p>
 <ul>
@@ -224,8 +224,8 @@
 <p>上面代码限制所有的外部资源，都只能从当前域名加载。详情可参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP" target="_blank" rel="noopener">内容安全策略( CSP )</a></p>
 ]]></content>
       <categories>
-        <category>web安全</category>
-        <category>xss攻击</category>
+        <category>Web安全</category>
+        <category>XSS攻击</category>
       </categories>
   </entry>
   <entry>
