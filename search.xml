@@ -23,6 +23,7 @@
 <li><p>qq游戏购买道具</p>
 <p> <code>http://account.play.qq.com:8080//cgi-bin/buyitem_present_yxb1?item_id=56&amp;item_num=1</code></p>
 <p> 上面接口使用了一个get请求，如果用户登录了qq，则会购买ID为56的道具一件，给用户造成了实际的损失（一点就爆炸，现已修复）</p>
+ <a id="more"></a>
 </li>
 <li><p>qq音乐分享到腾讯微博</p>
 <p> 通过点击微博内的链接，就会进入到攻击者的网站，该网站中包含以下代码，此时用户就会受到csrf攻击<br> <img src="https://qiniu.xiaoxilao.com/20201115145459.png" alt></p>
