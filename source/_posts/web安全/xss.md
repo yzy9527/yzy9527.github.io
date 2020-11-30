@@ -1,9 +1,9 @@
 ---
-title: xss攻击
+title: XSS攻击
 date: 2020-11-13 22:12:12
 categories:
- - web安全
- - xss攻击
+ - Web安全
+ - XSS攻击
 ---
 
 安全问题：
