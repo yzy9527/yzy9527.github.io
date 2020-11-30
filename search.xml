@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>CSRF攻击</title>
-    <url>/2020/11/20/web%E5%AE%89%E5%85%A8/csrf/</url>
+    <url>/2020/11/20/Web%E5%AE%89%E5%85%A8/csrf/</url>
     <content><![CDATA[<h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><ul>
 <li>Cross Site Request Forgy</li>
 <li>跨站请求伪造</li>
@@ -107,7 +107,7 @@
   </entry>
   <entry>
     <title>XSS攻击</title>
-    <url>/2020/11/13/web%E5%AE%89%E5%85%A8/xss/</url>
+    <url>/2020/11/13/Web%E5%AE%89%E5%85%A8/xss/</url>
     <content><![CDATA[<p>安全问题：</p>
 <ul>
 <li>用户身份被盗用</li>
