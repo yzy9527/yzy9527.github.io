@@ -3,15 +3,15 @@
   <entry>
     <title>HTTP传输窃听</title>
     <url>/2020/12/04/Web%E5%AE%89%E5%85%A8/HTTP/</url>
-    <content><![CDATA[<p>由于http是明文传输的，从服务器到浏览器之间，会经过很多链路，这些链路中的每一台数据都可以进行窃听和篡改请求，这对于web来说是一个巨大的威胁<br><img src="https://qiniu.xiaoxilao.com/1606831917412_16.png" alt="alt 传输链路窃听篡改" title="传输链路窃听篡改"></p>
-<p>#HTTP窃听</p>
-<ul>
+    <content><![CDATA[<p>由于http是明文传输的，从服务器到浏览器之间，会经过很多链路，这些链路中的每一台数据都可以进行窃听和篡改请求，这对于web来说是一个巨大的威胁</p>
+<p><img src="https://qiniu.xiaoxilao.com/1606831917412_16.png" alt="alt 传输链路窃听篡改" title="传输链路窃听篡改"></p>
+<a id="more"></a>
+<h1 id="HTTP窃听"><a href="#HTTP窃听" class="headerlink" title="HTTP窃听"></a>HTTP窃听</h1><ul>
 <li>窃听用户密码</li>
 <li>窃听传输敏感信息</li>
 <li>非法获取用户资料</li>
 </ul>
-<p>#HTTP篡改</p>
-<ul>
+<h1 id="HTTP篡改"><a href="#HTTP篡改" class="headerlink" title="HTTP篡改"></a>HTTP篡改</h1><ul>
 <li>插入广告（请求可能返回来一堆广告）</li>
 <li>重定向网站（将我们要访问的网站重定向到其他页）</li>
 <li>无法防御XSS和CSRF（由于http内容可修改，故所有关于XSS和CSRF的防御都将失效）</li>
@@ -41,7 +41,11 @@
 <li>在该链接和按钮上方含有一个透明的<code>iframe</code>,其<code>src</code>来自攻击者想要攻击的网站</li>
 <li>用户点击链接或按钮时，实际点击了<code>iframe</code>内的按钮后链接。</li>
 </ol>
-<h2 id="点击劫持防御"><a href="#点击劫持防御" class="headerlink" title="点击劫持防御"></a>点击劫持防御</h2><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>根据js进行判断是否被劫持，如果被劫持就跳走<br> <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(top.location != <span class="built_in">window</span>.location)&#123;</span><br><span class="line">    top.location = <span class="built_in">window</span>.location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="点击劫持防御"><a href="#点击劫持防御" class="headerlink" title="点击劫持防御"></a>点击劫持防御</h2><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>根据js进行判断是否被劫持，如果被劫持就跳走</p>
+ <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(top.location != <span class="built_in">window</span>.location)&#123;</span><br><span class="line">    top.location = <span class="built_in">window</span>.location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
 <h3 id="sandbox"><a href="#sandbox" class="headerlink" title="sandbox"></a>sandbox</h3><p> 允许form提交，但会导致很多脚本，图标等无法显示，没有加入到允许名单；禁用js后，点击劫持也还有可能存在</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;iframe sandbox=<span class="string">"allow-forms"</span>/&gt;</span><br></pre></td></tr></table></figure>
 

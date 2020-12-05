@@ -13,7 +13,11 @@
 <li>在该链接和按钮上方含有一个透明的<code>iframe</code>,其<code>src</code>来自攻击者想要攻击的网站</li>
 <li>用户点击链接或按钮时，实际点击了<code>iframe</code>内的按钮后链接。</li>
 </ol>
-<h2 id="点击劫持防御"><a href="#点击劫持防御" class="headerlink" title="点击劫持防御"></a>点击劫持防御</h2><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>根据js进行判断是否被劫持，如果被劫持就跳走<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(top.location != <span class="built_in">window</span>.location)&#123;</span><br><span class="line">    top.location = <span class="built_in">window</span>.location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="点击劫持防御"><a href="#点击劫持防御" class="headerlink" title="点击劫持防御"></a>点击劫持防御</h2><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>根据js进行判断是否被劫持，如果被劫持就跳走</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(top.location != <span class="built_in">window</span>.location)&#123;</span><br><span class="line">    top.location = <span class="built_in">window</span>.location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
 <h3 id="sandbox"><a href="#sandbox" class="headerlink" title="sandbox"></a>sandbox</h3><p> 允许form提交，但会导致很多脚本，图标等无法显示，没有加入到允许名单；禁用js后，点击劫持也还有可能存在</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe sandbox=<span class="string">"allow-forms"</span>/&gt;</span><br></pre></td></tr></table></figure>
 
