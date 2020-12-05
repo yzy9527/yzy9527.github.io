@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HTTP传输窃听</title>
+    <url>/2020/12/04/Web%E5%AE%89%E5%85%A8/HTTP/</url>
+    <content><![CDATA[<p>由于http是明文传输的，从服务器到浏览器之间，会经过很多链路，这些链路中的每一台数据都可以进行窃听和篡改请求，这对于web来说是一个巨大的威胁<br><img src="https://qiniu.xiaoxilao.com/1606831917412_16.png" alt="alt 传输链路窃听篡改" title="传输链路窃听篡改"></p>
+<p>#HTTP窃听</p>
+<ul>
+<li>窃听用户密码</li>
+<li>窃听传输敏感信息</li>
+<li>非法获取用户资料</li>
+</ul>
+<p>#HTTP篡改</p>
+<ul>
+<li>插入广告（请求可能返回来一堆广告）</li>
+<li>重定向网站（将我们要访问的网站重定向到其他页）</li>
+<li>无法防御XSS和CSRF（由于http内容可修改，故所有关于XSS和CSRF的防御都将失效）</li>
+</ul>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><ul>
+<li><p>必应搜索，只要使用http进行访问，所访问的页面都会带有一个红包广告，进去就是那些天杀的广告（网站拥有者表示很无辜，这锅不背）<br><img src="https://qiniu.xiaoxilao.com/1606832941352_17.png" alt></p>
+</li>
+<li><p>访问其他网站时，http流量经过了运营商,运营商进行了劫持，带上了它们的流量球，将我们要访问的网站转到他们的充值购买套餐页面<br><img src="https://qiniu.xiaoxilao.com/1606832988412_18.png" alt></p>
+</li>
+<li><p>局域网劫持<br>攻击者通过一些手段将局域网中的流量导入到自己的电脑，相当于自己的机器成了一个代理服务器或是一个网管，当局域网内的用户访问了支付宝时，实际上是访问了被攻击者修改过的网页，这时候用户输入账号密码时，攻击者就会获取该用户的账号密码（支付宝已修复）<br><img src="https://qiniu.xiaoxilao.com/20201201224125.png" alt></p>
+</li>
+</ul>
+<ul>
+<li>公共wifi<br>使用公共WiFi，如果使用的是http协议，你所发的朋友圈、照片、银行密码等一系列数据都能被探测到</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>点击劫持</title>
+    <url>/2020/12/03/Web%E5%AE%89%E5%85%A8/click-jacking/</url>
+    <content><![CDATA[<p>点击劫持是一种“诱骗”用户在不知情的情况下点击恶意网站的方式。</p>
+<ol>
+<li>访问者进入到恶意网站，恶意网站中含有引导用户点击的链接或按钮。</li>
+<li>在该链接和按钮上方含有一个透明的<code>iframe</code>,其<code>src</code>来自攻击者想要攻击的网站</li>
+<li>用户点击链接或按钮时，实际点击了<code>iframe</code>内的按钮后链接。</li>
+</ol>
+<h2 id="点击劫持防御"><a href="#点击劫持防御" class="headerlink" title="点击劫持防御"></a>点击劫持防御</h2><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>根据js进行判断是否被劫持，如果被劫持就跳走<br> <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(top.location != <span class="built_in">window</span>.location)&#123;</span><br><span class="line">    top.location = <span class="built_in">window</span>.location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="sandbox"><a href="#sandbox" class="headerlink" title="sandbox"></a>sandbox</h3><p> 允许form提交，但会导致很多脚本，图标等无法显示，没有加入到允许名单；禁用js后，点击劫持也还有可能存在</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;iframe sandbox=<span class="string">"allow-forms"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>js无法百分比的解决劫持问题</p>
+</blockquote>
+<h3 id="X-Frame-Options（推荐）"><a href="#X-Frame-Options（推荐）" class="headerlink" title="X-Frame-Options（推荐）"></a>X-Frame-Options（推荐）</h3><p>决定这个网站是否允许内嵌，当我们设置该网站不允许内嵌时，浏览器就会不让它内嵌，从而防御点击劫持</p>
+<ul>
+<li>SAME-ORIGIN 嵌入页和被嵌入页在同一个域下</li>
+<li>ALLOW-FROM 只允许指定的网站对本网站内嵌</li>
+<li>DENY 不允许网站进行内嵌</li>
+</ul>
+<h3 id="其它辅助手段"><a href="#其它辅助手段" class="headerlink" title="其它辅助手段"></a>其它辅助手段</h3><p>如使用验证码，只有用户输入了验证码才可以进行点击，但这会提高用户的操作门槛，同时iframe也可能会变身为另一种形式让你输入验证码；总之用户的操作成本提高，就会在一定层度上减小点击劫持的风险，但这也仅仅只是辅助手段，并不能从根本上解决点击劫持</p>
+]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSRF攻击</title>
     <url>/2020/11/20/Web%E5%AE%89%E5%85%A8/csrf/</url>
     <content><![CDATA[<h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><ul>
@@ -547,6 +607,9 @@
 
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>忽略大小写</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog/.deploy_git</span><br><span class="line">vi .git/config</span><br><span class="line">将ignorecase=<span class="literal">true</span>改为ignorecase=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
