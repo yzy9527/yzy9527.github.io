@@ -14,11 +14,13 @@ categories:
 
 ### top
 根据js进行判断是否被劫持，如果被劫持就跳走
+
  ```js
     if(top.location != window.location){
         top.location = window.location
     }
 ```
+<!--more-->
 
 ### sandbox
  
