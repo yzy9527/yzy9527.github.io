@@ -166,7 +166,6 @@
 ]]></content>
       <categories>
         <category>Web安全</category>
-        <category>CSRF攻击</category>
       </categories>
   </entry>
   <entry>
@@ -194,10 +193,9 @@
 <h2 id="xss分类"><a href="#xss分类" class="headerlink" title="xss分类"></a>xss分类</h2></li>
 <li><p>反射型 （url直接注入）</p>
 <p> 如url为<code>www.abc.com?sokey=&lt;script&gt;alert(1)&lt;/script&gt;</code>,攻击者将上面的URL发送给其他用户时才会产生作用，此时攻击者会将这类url转为短网址;例如：<code>https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=%E7%89%B9%E6%9C%97%E6%99%AE%E5%9B%A2%E9%98%9F%E4%BA%AE%E5%87%BA%E7%99%BE%E9%A1%B5%E9%80%89%E4%B8%BE%E6%AC%BA%E8%AF%88%E8%AF%81%E8%AF%8D&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&amp;hisfilter=1</code>和 <code>http://dwz.win/WVm</code>是一样的，从而达到欺骗用户的目的</p>
+<a id="more"></a>
 </li>
 <li><p>存储性 （存储到DB后读取时注入）<br> 这类攻击不易被发现，且危害大，因为是存储到数据库中，所以其他用户访问这个网站时，都会受到攻击；例：在页面的评论区中评论内容并添加alert脚本，由于内容是存储到数据库中的，故其他用户每次访问都会受到攻击</p>
- <a id="more"></a>
-
 </li>
 </ul>
 <h2 id="xss攻击注入点"><a href="#xss攻击注入点" class="headerlink" title="xss攻击注入点"></a>xss攻击注入点</h2><ul>
@@ -289,7 +287,6 @@
 ]]></content>
       <categories>
         <category>Web安全</category>
-        <category>XSS攻击</category>
       </categories>
   </entry>
   <entry>
